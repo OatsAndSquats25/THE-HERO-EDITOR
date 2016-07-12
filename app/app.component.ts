@@ -1,34 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Hero } from './hero';
-import { HeroDetailComponent } from './hero-detail.component';
+import { Component } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+
 import { HeroService } from './hero.service';
+
 @Component({
     selector: 'my-app',
     template: `
     <h1>{{title}}</h1>
-    <h2>My Heroes</h2>
-    <ul class="heroes">
-      <li *ngFor="let hero of heroes"
-        [class.selected]="hero === selectedHero"
-        (click)="onSelect(hero)">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
-      </li>
-    </ul>
-    <my-hero-detail [hero]="selectedHero"></my-hero-detail>
+    <nav>
+      <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
+      <a [routerLink]="['/heroes']" routerLinkActive="active">Heroes</a>
+    </nav>
+    <router-outlet></router-outlet>
   `,
-    directives: [HeroDetailComponent],
-    providers: [HeroService]
+    styleUrls: ['app/app.component.css'],
+    directives: [ROUTER_DIRECTIVES],
+    providers: [
+        HeroService
+    ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
     title = 'Tour of Heroes';
-    heroes: Hero[];
-    selectedHero: Hero;
-    constructor(private heroService: HeroService) { }
-    getHeroes() {
-        this.heroService.getHeroes().then(heroes => this.heroes = heroes);
-    }
-    ngOnInit() {
-        this.getHeroes();
-    }
-    onSelect(hero: Hero) { this.selectedHero = hero; }
 }
+
+
+/*
+ Copyright 2016 Google Inc. All Rights Reserved.
+ Use of this source code is governed by an MIT-style license that
+ can be found in the LICENSE file at http://angular.io/license
+ */
