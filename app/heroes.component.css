@@ -47,17 +47,14 @@
 }
 button {
     font-family: Arial;
-    background-color: #eee;
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
-    cursor: pointer;
     cursor: hand;
 }
 button:hover {
     background-color: #cfd8dc;
 }
-
 
 /*
 Copyright 2016 Google Inc. All Rights Reserved.
